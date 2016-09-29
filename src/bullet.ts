@@ -1,21 +1,15 @@
-import { Body, Size, Center } from "./body"
-
-declare class Velocity {
-    x: number
-    y: number
-}
-
-export class Bullet implements Body{
-    velocity: Velocity
-    size: Size = {x: 3, y: 3}
-    center: Center
+export class Bullet extends Body {
+    public size: Size = {x: 3, y: 3};
+    protected velocity: Velocity;
 
     constructor(center: Center, velocity: Velocity) {
-        this.center = center
-        this.velocity = velocity
+        super();
+        this.center = center;
+        this.velocity = velocity;
     }
+
     public update() {
-        this.center.x += this.velocity.x
-        this.center.y += this.velocity.y
+        this.center.x += this.velocity.x;
+        this.center.y += this.velocity.y;
     }
 }

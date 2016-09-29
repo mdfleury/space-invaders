@@ -1,20 +1,14 @@
-export const KEYS = {
-    LEFT: 37,
-    RIGHT: 39,
-    SPACE: 32
-}
-
 export class Keyboarder {
-    keyState: any = {}
+    protected keyState: Boolean[] = [];
 
     constructor() {
-        window.onkeydown = (event) => {
+        window.addEventListener("keydown", (event) => {
             this.keyState[event.keyCode] = true;
-        };
+        });
 
-        window.onkeyup = (event) => {
+        window.addEventListener("keyup", (event) => {
             this.keyState[event.keyCode] = false;
-        };
+        });
     }
 
     public isDown(keyCode: number) {
