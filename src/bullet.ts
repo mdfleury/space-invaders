@@ -1,3 +1,5 @@
+import { Body } from "./global";
+
 export class Bullet extends Body {
     public size: Size = {x: 3, y: 3};
     protected velocity: Velocity;

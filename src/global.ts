@@ -1,19 +1,19 @@
-declare class Velocity {
+export class Velocity {
     public x: number;
     public y: number;
 }
 
-declare class Size {
+export class Size {
     public x: number;
     public y: number;
 }
 
-declare class Center {
+export class Center {
     public x: number;
     public y: number;
 }
 
-declare abstract class Body {
+export abstract class Body {
     public center: Center;
     public size: Size;
 

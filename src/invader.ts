@@ -1,5 +1,6 @@
 import { Bullet } from "./bullet";
 import { Game } from "./game";
+import { Body } from "./global";
 
 export class Invader extends Body {
     public size: Size = {x: 15, y: 15};

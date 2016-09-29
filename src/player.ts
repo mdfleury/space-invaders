@@ -2,6 +2,7 @@ import { Bullet } from "./bullet";
 import { Keyboarder } from "./keyboarder";
 import { KEYS } from "./keys";
 import { Game } from "./game";
+import { Body } from "./global";
 
 export class Player extends Body {
     public size: Size = {x: 15, y: 15};
