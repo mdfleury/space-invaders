@@ -9,7 +9,7 @@ export class Player extends Body {
   protected keyboarder: Keyboarder;
   protected game: Game;
   protected lastShot: number = 0;
-  protected shotLag: number = 100;
+  protected shotLag: number = 600;
 
   constructor(game: Game) {
     super();

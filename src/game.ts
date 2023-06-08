@@ -9,6 +9,7 @@ export class Game {
   protected canvas: HTMLCanvasElement;
   protected bodies: Body[];
   protected screen: CanvasRenderingContext2D;
+  protected raf: number;
 
   constructor(domId: string) {
     this.canvas = <HTMLCanvasElement>document.getElementById(domId);
@@ -16,7 +17,7 @@ export class Game {
     this.gameSize = { x: this.canvas.width, y: this.canvas.height };
     this.screen = this.canvas.getContext("2d");
     window.addEventListener("keyup", event => {
-      if (event.keyCode === KEYS.R) {
+      if (event.key === KEYS.R) {
         this.reset();
       }
     });
@@ -38,7 +39,7 @@ export class Game {
     this.update();
     this.draw();
 
-    requestAnimationFrame(this.tick.bind(this));
+    this.raf = requestAnimationFrame(this.tick.bind(this));
   }
 
   public invadersBelow(invader: Invader) {
@@ -58,6 +59,7 @@ export class Game {
   protected reset() {
     this.bodies = Util.produceInvaders(this);
     this.bodies.push(new Player(this));
+    cancelAnimationFrame (this.raf);
     this.tick();
   }
 
@@ -68,19 +70,18 @@ export class Game {
     }
   }
 
-  protected update() {
-    let bodies = this.bodies;
-    const notCollidingWithAnything = (b1: Body) => {
-      return (
-        bodies.filter((b2: Body) => {
-          return Util.colliding(b1, b2);
-        }).length === 0
-      );
-    };
+  protected notCollidingWithAnything(b1: Body) {
+    return (
+      this.bodies.filter((b2: Body) => {
+        return Util.colliding(b1, b2);
+      }).length === 0
+    );
+  };
 
-    this.bodies = this.bodies.filter(notCollidingWithAnything);
-    for (let i = 0; i < this.bodies.length; i++) {
-      this.bodies[i].update();
+  protected update() {
+    this.bodies = this.bodies.filter(this.notCollidingWithAnything.bind(this));
+    for (let body of this.bodies) {
+      body.update();
     }
   }
 

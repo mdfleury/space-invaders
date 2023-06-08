@@ -1,6 +1,6 @@
 export const KEYS = {
-  LEFT: 37,
-  R: 82,
-  RIGHT: 39,
-  SPACE: 32
+  LEFT: "ArrowLeft",
+  R: "r",
+  RIGHT: "ArrowRight",
+  SPACE: " "
 };
